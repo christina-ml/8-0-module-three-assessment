@@ -7,9 +7,23 @@ class People extends Component {
     super();
 
     this.state = {
-      
+        people: [],
+      }
     }
-  }
+  
+    handlePeopleFetch=()=>{
+        fetch("https://ghibliapi.herokuapp.com/people")
+        .then((res)=> res.json())
+        .then((data)=>{
+            this.setState({
+              people: data,
+            })
+        })
+      }
+    
+    componentDidMount = () => {
+        this.handlePeopleFetch();
+    };
 
   render(){
     return(

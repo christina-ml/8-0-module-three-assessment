@@ -7,14 +7,52 @@ class Movies extends Component {
     super();
 
     this.state = {
-      
+        movies: [],
+      }
     }
-  }
+  
+    handleMovieFetch=()=>{
+        fetch("https://ghibliapi.herokuapp.com/films")
+        .then((res)=> res.json())
+        .then((data)=>{
+            this.setState({
+              movies: data,
+              currentMovie: null,
+            })
+        })
+      }
+    
+    componentDidMount = () => {
+        this.handleMovieFetch();
+    };
+
+    handleDropdownChange = (event) => {
+        let currentMovieObject = this.state.movies.find((movie) => {
+          return movie.title === event.target.value;
+        });
+        this.setState({
+            currentMovie: currentMovieObject,
+        });
+      };
 
   render(){
+
+   let allMovies = this.state.movies.map((movie)=>{
+        return (    
+            <option>{movie.title}</option>
+        )
+    })  
+
+
     return(
       <div className="movies">
-          <h1>Hello, Movies page!</h1>
+          <h1>Select a Movie</h1>
+          <div>
+          <select onChange={this.handleDropdownChange}>
+            <option></option>
+            {allMovies}
+        </select>
+          </div>
       </div>
     )
   }
