@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import "../App.css";
 
 class Locations extends Component {
@@ -7,7 +8,7 @@ class Locations extends Component {
 
     this.state = {
       locations: [],
-      display: false,
+      display: true,
     }
   }
 
@@ -43,6 +44,34 @@ class Locations extends Component {
       <div className="locations">
             <h1>List of Locations</h1>
 
+        {/* <Switch>
+          <Route exact path="/locations/">
+            <Redirect to="/locations/show" />
+          </Route>
+
+          <Route path="/locations/show">
+          </Route>
+
+          <Route path="/locations/hide">
+          </Route>
+        </Switch> */}
+
+
+            {/* <div className="all-locations">
+            <ul>
+                <li>
+                    <button>See All Locations ({allLocations.length})</button>
+                    <div>hello locations</div>
+                </li>
+                <li>
+                    <button>Hide All Locations ({allLocations.length})</button>
+                    <div>Hello locations</div>
+                </li>
+            </ul>
+            </div> */}
+
+
+
             <button>Show/Hide</button>
             <input 
                 type="checkbox" 
@@ -55,7 +84,7 @@ class Locations extends Component {
             }
 
             { !this.state.display && 
-                <div>Thing is hidden</div>
+                <div>Locations are hidden</div>
             }
 
 
@@ -63,7 +92,8 @@ class Locations extends Component {
             {/* <button type="button"
                 onClick={this.handleShowHide}
                 value="Show Locations"
-            >{allLocations}
+            >
+                Show Locations
             </button>
 
             { this.state.display && 
@@ -73,7 +103,7 @@ class Locations extends Component {
                         onClick={this.handleShowHide}
                         value="Show the Locations">
                     </button>
-                    <div>show/hide</div>
+                    <div>Showing the locations</div>
                 </div>
             }
 
@@ -85,9 +115,9 @@ class Locations extends Component {
                         value="Hide the Locations">
                             Hide the Locations
                     </button>
-                    <div>Nothing</div>
+                    <div>Nothing here.</div>
                 </div>
-            } */}            
+            }   */}
       </div>
     )
   }
