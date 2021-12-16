@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import "../App.css";
 
 
@@ -10,6 +9,7 @@ class People extends Component {
     this.state = {
         people: [],
         searchValue: '',
+        person: [],
       }
     }
   
@@ -37,19 +37,23 @@ class People extends Component {
     handleSubmit=(event)=>{
         event.preventDefault();
         this.setState({
-            searchValue: '',
+            person: this.state.searchValue,
         }) 
     }
 
   render(){
-    //   get the text to display on the page
-    let allPeople = this.state.people.map((person)=>{
+    let filteredPeople = this.state.people.filter((person)=>{
+        return (
+            person.name === this.state.person
+        )
+    }) 
+
+    let allPeople = filteredPeople.map((person)=>{
         return (  
             <div>
-                <div>Name: {person.name}</div>
-                <div>Age: {person.age}</div>
-                <div>Gender: {person.gender}</div>
-                <br />
+                <h3>Name: {person.name}</h3>
+                <h3>Age: {person.age}</h3>
+                <h3>Gender: {person.gender}</h3>
             </div>
         )
     })
@@ -57,18 +61,16 @@ class People extends Component {
     return(
         <div className="people">
             <h1>Search for a Person</h1>
-
             <form onSubmit={this.handleSubmit}>
                 <input 
                     type="text"
                     placeholder="Find Your Person"
                     value={this.state.searchValue}
-                    onInput={this.handleInput}
+                    onChange={this.handleInput}
                 />
                 <button type="submit">Submit</button>
             </form>
-        
-            <div>{allPeople}</div>
+            {filteredPeople.length ? allPeople : <h2>Not Found</h2>}
         </div>
     )
   }

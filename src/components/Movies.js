@@ -53,12 +53,20 @@ class Movies extends Component {
                     {allMovies}
                 </select>
         
+                {  this.state.currentMovie ?
                 <div>
                     <h3>Title: {this.state.currentMovie?.title}</h3>
                     <div>Release Date: {this.state.currentMovie?.release_date}</div>
                     <div>Release Date: {this.state.currentMovie?.description}</div>
                 </div>
+                : <h2>No movie selected</h2>}
 
+
+                {/* <div>
+                    <h3>Title: {this.state.currentMovie?.title}</h3>
+                    <div>Release Date: {this.state.currentMovie?.release_date}</div>
+                    <div>Release Date: {this.state.currentMovie?.description}</div>
+                </div> */}
 
             </div>
         </div>
