@@ -43,7 +43,6 @@ class Movies extends Component {
         )
     })  
 
-
     return(
         <div className="movies">
             <h1>Select a Movie</h1>
@@ -60,14 +59,6 @@ class Movies extends Component {
                     <div>Release Date: {this.state.currentMovie?.description}</div>
                 </div>
                 : <h2>No movie selected</h2>}
-
-
-                {/* <div>
-                    <h3>Title: {this.state.currentMovie?.title}</h3>
-                    <div>Release Date: {this.state.currentMovie?.release_date}</div>
-                    <div>Release Date: {this.state.currentMovie?.description}</div>
-                </div> */}
-
             </div>
         </div>
     )
