@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
 import "../App.css";
 
 class Locations extends Component {
@@ -8,7 +7,7 @@ class Locations extends Component {
 
     this.state = {
       locations: [],
-      display: true,
+      display: false,
     }
   }
 
@@ -22,9 +21,9 @@ class Locations extends Component {
       })
     }
 
-    handleShowHide=(event)=>{
+    handleShowHide=()=>{
         this.setState({
-            display: event.target.checked,
+            display: !this.state.display,
         })
     }
     
@@ -35,7 +34,11 @@ class Locations extends Component {
   render(){
     let allLocations = this.state.locations.map((location)=>{
         return (
-            <h3>Name: {location.name}</h3>
+            <li>
+                <h2>Name: {location.name}</h2>
+                <h2>Climate: {location.climate}</h2>
+                <h2>Terrain: {location.terrain}</h2>
+            </li>
         )
     })    
 
@@ -44,80 +47,17 @@ class Locations extends Component {
       <div className="locations">
             <h1>List of Locations</h1>
 
-        {/* <Switch>
-          <Route exact path="/locations/">
-            <Redirect to="/locations/show" />
-          </Route>
-
-          <Route path="/locations/show">
-          </Route>
-
-          <Route path="/locations/hide">
-          </Route>
-        </Switch> */}
-
-
-            {/* <div className="all-locations">
-            <ul>
-                <li>
-                    <button>See All Locations ({allLocations.length})</button>
-                    <div>hello locations</div>
-                </li>
-                <li>
-                    <button>Hide All Locations ({allLocations.length})</button>
-                    <div>Hello locations</div>
-                </li>
-            </ul>
-            </div> */}
-
-
-
-            <button>Show/Hide</button>
-            <input 
-                type="checkbox" 
-                onChange={this.handleShowHide}
-                checked={this.state.display}
-             />
-
-            { this.state.display && 
-                <div>{allLocations}</div>
-            }
-
-            { !this.state.display && 
-                <div>Locations are hidden</div>
-            }
-
-
-
-            {/* <button type="button"
-                onClick={this.handleShowHide}
-                value="Show Locations"
-            >
-                Show Locations
+            <button onClick={this.handleShowHide}>
+                {this.state.display ? "Hide Locations" : "Show Locations"}
             </button>
 
             { this.state.display && 
-                <div>
-                    <button 
-                        type="button"
-                        onClick={this.handleShowHide}
-                        value="Show the Locations">
-                    </button>
-                    <div>Showing the locations</div>
-                </div>
+                <ul>{allLocations}</ul>
             }
 
             { !this.state.display && 
-                <div>
-                    <button 
-                        type="button"
-                        onChange={this.handleShowHide}
-                        value="Hide the Locations">
-                            Hide the Locations
-                    </button>
-                    <div>Nothing here.</div>
-                </div>
-            }   */}
+                <div></div>
+            }          
       </div>
     )
   }
