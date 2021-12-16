@@ -26,10 +26,31 @@ class People extends Component {
     };
 
   render(){
+    //   get the text to display on the page
+    let allPeople = this.state.people.map((person)=>{
+        return (    
+            <div>
+                <div>Name: {person.name}</div>
+                <div>Age: {person.age}</div>
+                <div>Gender: {person.gender}</div>
+            </div>
+        )
+    })  
+
     return(
-      <div className="people">
-          <h1>Hello, People page!</h1>
-      </div>
+        <div className="people">
+            <h1>Search for a Person</h1>
+
+            <form>
+                <input 
+                    type="text"
+                    placeholder="Find Your Person"
+                />
+                <button type="submit">Submit</button>
+            </form>
+
+            <div>{allPeople}</div>
+        </div>
     )
   }
 }
